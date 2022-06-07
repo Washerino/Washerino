@@ -1,14 +1,70 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const bodyParser = require('body-parser');
+
+const pool = require('../db');
+
 
 const router = express.Router();
-//create jsonParser so that data can be converted to json.
-const jsonParser = bodyParser.json();
+
+router.use(express.json()); // => req.body
 
 router.get('/', (req, res) => {
     //placeholder
     res.sendFile(path.join(__dirname,'..','public','ranger.html'));
 });
+
+//create a new ranger
+router.post("/createRanger", async(req, res) => {
+    try {
+        const { rangerName } = req.body;
+        const { username } = req.body;
+        const { password } = req.body;
+    
+        const newRanger = await pool.query("INSERT INTO ranger (rangerName, username, AdminPassword) VALUES ($1, $2, $3)", [rangerName, username, password]);
+    
+        res.json("Ranger successfully created");
+    } catch (err) {
+        console.error(err.message);
+        res.json("username already exists");
+    }
+});
+
+//gets a given rangers details
+router.get("/getRanger/:id", async(req, res) => {
+
+    try {
+
+        const { id } = req.params;
+        const rangerDetails = await pool.query("SELECT * FROM ranger WHERE ID = $1", [id]);
+
+        res.json(rangerDetails.rows);
+        
+    } catch (err) {
+        console.error(err.message);
+        res.json("Couldnt retrieve ranger Details");
+    }
+});
+
+//deletes a given ranger
+router.delete("/deleteRanger/:id", async(req, res) => {
+
+    try {
+
+        const { id } = req.params;
+        const rangerDetails = await pool.query("DELETE FROM ranger WHERE ID = $1", [id]);
+
+        res.json("Ranger successfully deleted");
+        
+    } catch (err) {
+        console.error(err.message);
+        res.json("Couldnt retrieve ranger Details");
+    }
+
+});
+
+
+
+
+
 module.exports = router;

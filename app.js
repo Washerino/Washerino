@@ -22,21 +22,6 @@ app.get('/index', (req, res) => {
 });
 
 
-//create a new ranger
-app.post("/createRanger", async(req, res) => {
-    try {
-        const { rangerName } = req.body;
-        const { username } = req.body;
-        const { password } = req.body;
-    
-        const newAdmin = await pool.query("INSERT INTO ranger (rangerName, username, AdminPassword) VALUES ($1, $2, $3)", [rangerName, username, password]);
-    
-        res.json("Ranger successfully created");
-    } catch (err) {
-        console.error(err.message);
-        res.json("username already exists");
-    }
-    });
 
 const loginRouter = require('./routes/loginRouter');
 const monitorRouter = require('./routes/monitorRouter');
