@@ -1,4 +1,4 @@
-
+let map;
 async function initMap(){
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: 7,
@@ -9,5 +9,5 @@ async function initMap(){
 
 
 
-window.initMap = initMap();
+window.initMap = initMap;
 // document.addEventListener('DOMContentLoaded',dropper)
