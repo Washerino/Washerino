@@ -36,13 +36,28 @@ router.get("/getRanger/:id", async(req, res) => {
     try {
 
         const { id } = req.params;
-        const rangerDetails = await pool.query("SELECT * FROM ranger WHERE ID = $1", [id]);
+        const rangerDetails = await pool.query("SELECT ID, RangerName, USERNAME FROM ranger WHERE ID = $1", [id]);
 
         res.json(rangerDetails.rows);
         
     } catch (err) {
         console.error(err.message);
         res.json("Couldnt retrieve ranger Details");
+    }
+});
+
+//gets all rangers details
+router.get("/getAllRangers/", async(req, res) => {
+
+    try {
+
+        const rangerDetails = await pool.query("SELECT ID, RangerName, USERNAME FROM ranger");
+
+        res.json(rangerDetails.rows);
+        
+    } catch (err) {
+        console.error(err.message);
+        res.json("Couldnt retrieve rangers Details");
     }
 });
 
@@ -62,6 +77,8 @@ router.delete("/deleteRanger/:id", async(req, res) => {
     }
 
 });
+
+
 
 
 

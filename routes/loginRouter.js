@@ -1,19 +1,18 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const pool = require('../db');
 
-const bodyParser = require('body-parser');
 
 const router = express.Router();
-//create jsonParser so that data can be converted to json.
-const jsonParser = bodyParser.json();
+router.use(express.json()); // => req.body
 
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname,'..','public','login.html'));
 });
 
 
-router.post('/',jsonParser, (req, res) => {
+router.post('/', (req, res) => {
       let userDetails = {};
       let isValid = false;
 
