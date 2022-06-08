@@ -13,6 +13,7 @@ li {
   float: left;
 }
 
+
 li a {
   display: block;
   color: white;
@@ -76,4 +77,20 @@ li a:hover {
 
 #login:hover  {
   transform: scale(1.05) perspective(1px);
+}
+
+
+
+/*Map styles*/
+
+.routes {
+  margin: 0 auto;
+  width: 60%;
+  border: 3px solid black;
+  padding: 10px;
+  margin-top: 10px;
+}
+#map {
+  height: 600px;
+  width: 100%;
 }

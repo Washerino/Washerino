@@ -9,7 +9,7 @@ router.use(express.json()); // => req.body
 
 
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'..','public','map.html'));
+    res.sendFile(path.join(__dirname,'..','public','map_requirements','map.html'));
 });
 
 //create a new station

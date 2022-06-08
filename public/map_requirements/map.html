@@ -7,6 +7,7 @@
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtyN-Q3afXZqeL6i4bH-wdVbyYIvxtJTo&libraries=geometry&callback=initMap&v=weekly"
             defer
     ></script>
+    <script type="module" src="/map_requirements/map_init.js" defer></script>
   </head>
   <ul>
     <li><a href="/index">Home</a></li>
@@ -18,6 +19,13 @@
     <h1>Map</h1>
     <p>Current information shown is {id,longitude, latitude, information} placeholder</p>
     <h3>Washdown station map</h3>
-    <p> map goes here*</p>
+    <div class="routes">
+      <div id="map"></div>
+    </div>
+
+
+
+
+
   </body>
 </html>
