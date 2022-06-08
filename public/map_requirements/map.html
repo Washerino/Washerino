@@ -1,8 +1,14 @@
 <!doctype html>
 <html>
   <head>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <title>WASHERINO!</title>
+    <script type="module" src="/map_requirements/map_init.js" defer></script>
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDF2sKEOXp5BIk49LdGIFifFqZJd-ww-1I&libraries=geometry&callback=initMap&v=weekly"
+            defer
+    ></script>
+
   </head>
   <ul>
     <li><a href="/index">Home</a></li>
@@ -14,6 +20,13 @@
     <h1>Map</h1>
     <p>Current information shown is {id,longitude, latitude, information} placeholder</p>
     <h3>Washdown station map</h3>
-    <p> map goes here*</p>
+    <div class="routes">
+      <div id="map"></div>
+    </div>
+
+
+
+
+
   </body>
 </html>
