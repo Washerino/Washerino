@@ -41,7 +41,7 @@ CREATE TABLE station_check (
 CREATE TABLE report (
     ID SERIAL PRIMARY KEY,
     RangerID INTEGER,
-    FOREIGN KEY (RangerID) REFERENCES ranger(ID)
+    FOREIGN KEY (RangerID) REFERENCES ranger(ID),
     Issue VARCHAR(200),
     Cleared BOOLEAN
 );
