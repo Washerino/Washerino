@@ -54,8 +54,9 @@ router.get("/getCheckDate/:id", async(req, res) => {
 router.get("/getRanger/:id", async(req, res) => {
 
     try {
+        console.log("reached getstationranger");
         const { id } = req.params;
-        const details = await pool.query("SELECT RangerID FROM station_check  WHERE ID = $1", [id]);
+        const details = await pool.query("SELECT RangerID FROM station_check  WHERE id = $1", [id]);
         res.json(details.rows);
     } catch (err) {
         console.error(err.message);

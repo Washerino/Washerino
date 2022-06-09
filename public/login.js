@@ -27,13 +27,20 @@ async function loginAttempt(event) {
 
 
     if (response.status === 200) {
-        sessionStorage.setItem('id', json.id);
-        sessionStorage.setItem('rangerName', json.rangername);
-        sessionStorage.setItem('username', json.username);
+        
+        try
+        {
+            sessionStorage.setItem('id', json.id);
+            sessionStorage.setItem('rangerName', json.rangername);
+            sessionStorage.setItem('username', json.username);
+            
+            console.log("user in session storage");
 
-        console.log("Hello");
-
-        window.location.href = "/home";
+            window.location.href = "/ranger";
+        }
+        catch{
+            console.log("Err: could not save user details to seesion storage")
+        }
     }
     else {
 

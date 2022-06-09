@@ -23,6 +23,7 @@ router.post('/', async(req, res) => {
 
       if (parseInt(isCorrect.rows[0].count) === 1) {
         const details = await pool.query("SELECT ID, RangerName, Username FROM ranger WHERE USERNAME = $1 AND ADMINPASSWORD = $2", [username, password ]);
+        console.log(details.rows[0]);
         res.status(200).json(details.rows[0]);
       } else {
         res.status(401).json("Incorrect Username or Password");
