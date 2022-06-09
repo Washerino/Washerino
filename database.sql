@@ -3,7 +3,8 @@
 --\l lists all databases in postgres
 --\c into washdown_stations
 --\dt - shows tables in database
--- DROP DATABASE <Datbase name>
+-- DROP DATABASE <Datbase name>;
+-- DROP TABLE <Table name>;
 
 CREATE DATABASE washdown_stations;
 
@@ -41,7 +42,9 @@ CREATE TABLE station_check (
 CREATE TABLE report (
     ID SERIAL PRIMARY KEY,
     RangerID INTEGER,
-    FOREIGN KEY (RangerID) REFERENCES ranger(ID)
+    FOREIGN KEY (RangerID) REFERENCES ranger(ID),
+    StationID INTEGER,
+    FOREIGN KEY (StationID) REFERENCES station(ID),
     Issue VARCHAR(200),
     Cleared BOOLEAN
 );
