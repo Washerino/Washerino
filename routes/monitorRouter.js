@@ -8,7 +8,7 @@ const router = express.Router();
 router.use(express.json()); // => req.body
 
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'..','public','monitor.html'));
+    res.sendFile(path.join(__dirname,'..','public',"map_requirements",'monitor.html'));
 });
 
 // retrieve water level using id
