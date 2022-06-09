@@ -47,7 +47,7 @@ li a:hover {
   font-size: 18px;
   font-weight:bold;
 }
-#email, #password {
+#username, #password {
   width: 75%;
   display: flex;
   margin: 0 auto;
@@ -55,7 +55,7 @@ li a:hover {
   border: 2px solid black;
 }
 
-#email, #password::placeholder {
+#username, #password::placeholder {
   font-style: italic;
 }
 

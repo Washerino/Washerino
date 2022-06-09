@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 
 // checks user login details against users db
-router.post('/login', async(req, res) => {
+router.post('/', async(req, res) => {
 
   try {
       const { username } = req.body;
@@ -21,11 +21,11 @@ router.post('/login', async(req, res) => {
       const isCorrect = await pool.query("SELECT COUNT(*) FROM ranger WHERE USERNAME = $1 AND ADMINPASSWORD = $2", [username, password ]);
       //if valid, do thing?
 
-      if (isCorrect.rows[0].count == 1) {
+      if (parseInt(isCorrect.rows[0].count) === 1) {
         const details = await pool.query("SELECT ID, RangerName, Username FROM ranger WHERE USERNAME = $1 AND ADMINPASSWORD = $2", [username, password ]);
-        res.status(200).json(details.rows);
+        res.status(200).json(details.rows[0]);
       } else {
-        res.json("Incorrect Username or Password");
+        res.status(401).json("Incorrect Username or Password");
       }
       
   } catch (err) {
