@@ -51,7 +51,7 @@ router.get("/getCheckDate/:id", async(req, res) => {
 });
 
 // retrieve stations' assigned ranger using id
-router.get("/getCheckDate/:id", async(req, res) => {
+router.get("/getRanger/:id", async(req, res) => {
 
     try {
         const { id } = req.params;
