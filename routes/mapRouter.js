@@ -35,7 +35,7 @@ router.get("/getStation/:id", async(req, res) => {
     try {
 
         const { id } = req.params;
-        const stationDetails = await pool.query("SELECT * FROM statio  WHERE ID = $1", [id]);
+        const stationDetails = await pool.query("SELECT * FROM station  WHERE ID = $1", [id]);
 
         res.json(stationDetails.rows);
         

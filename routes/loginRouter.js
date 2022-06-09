@@ -12,31 +12,19 @@ router.get('/', (req, res) => {
 });
 
 
-router.post('/', (req, res) => {
-      let userDetails = {};
-      let isValid = false;
+// checks user login details against users db
+router.get('/login', async(req, res) => {
 
-      const data = fs.readFileSync(path.join(__dirname,'..','users_db.json'), {encoding: 'utf8', flag:'r'});
+  try {
+      const { id } = req.params;
+      const details = await pool.query("SELECT * FROM users  WHERE Email = $1 && WHERE Password = $2", [email, password ]);
+      //if valid, do thing?
+      res.json(details.rows);
       
-      const users = JSON.parse(data);
-
-      for(let i = 0; i < users.user.length; i++) {
-          console.log(users.user[i]);
-          console.log(users.user[i].email)
-          if (users.user[i].email === req.body.email && users.user[i].password == req.body.password ) {
-
-            userDetails = {
-              id: users.user[i]._id,
-              email: users.user[i].email,
-              name: users.user[i].name,
-              registration: users.user[i].registration,
-              userType: users.user[i].user_Type,
-              wallet: users.user[i].wallet
-            }
-            
-            return res.status(200).json(userDetails);
-          }
-      }
-      return res.status(401).json("Incorrect username or password");
+  } catch (err) {
+      console.error(err.message);
+      res.json("Couldnt find user / user does not exist");
+  }
 });
+
 module.exports = router;
