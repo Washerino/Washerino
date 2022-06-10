@@ -1,11 +1,12 @@
 let map;
 let pins=[];
-let currentDetails;
+let currentPosition;
 async function initMap(){
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: 7,
         center: {lat:-15.6891,lng:142.5316,}
     });
+
     const test = await fetch("/map/getAllStations/");
     let pin_json = await test.json();
     console.log(pin_json);
@@ -50,5 +51,50 @@ async function showDetails(current_id){
     const deter = await temp.json();
     console.log(deter[0]);
 }
+async function giveDir(){
+    let directionsService = new google.maps.DirectionsService();
+    let directionsRenderer = new google.maps.DirectionsRenderer();
+    await mapDirection();
+    let closest = pins[0];
+    let temp;
+    let temp2 = (google.maps.geometry.spherical.computeDistanceBetween(pins[0].getPosition(),currentPosition));
 
+    for (let i =0;i<pins.length;i++) {
+        temp = (google.maps.geometry.spherical.computeDistanceBetween(pins[i].getPosition(),currentPosition));
+        if(temp<temp2){
+            closest = pins[i];
+        }
+        temp2 = temp;
+    }
+    let closestMarker = {
+        origin:currentPosition,
+        destination:closest.getPosition(),
+        travelMode:('DRIVING'),
+    };
+
+    directionsService.route(closestMarker, function(result, status) {
+        if (status == 'OK') {
+            directionsRenderer.setDirections(result);
+        }
+    });
+
+    directionsRenderer.setMap(map);
+
+}
+
+async function mapDirection(){
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(showPos);
+    } else{
+        alert("Sorry, browser does not support geolocation!");
+    }
+}
+async function showPos(position){
+    currentPosition = {"lat":position.coords.latitude,"lng":position.coords.longitude};
+}
 window.initMap = initMap;
+const dirButton = document.getElementById("closest")
+document.addEventListener('DOMContentLoaded', mapDirection);
+dirButton.addEventListener("click",function(){
+    giveDir();
+});
