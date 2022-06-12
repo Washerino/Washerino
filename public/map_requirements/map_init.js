@@ -23,6 +23,8 @@ async function initMap(){
         pins[i].addListener("click",function(){
             map.setZoom(8);
             showDetails(pins[this].getTitle());
+            let selected = sessionStorage.setItem("selected_id", pins[this].getTitle());
+            console.log(selected);
             reverseGeocode(pins[this]);
         }.bind(i));
 
@@ -49,6 +51,7 @@ async function reverseGeocode(currentPin){
 async function showDetails(current_id){
     const temp = await fetch ("map/getStation/"+current_id.toString());
     const deter = await temp.json();
+    document.location.reload(true);
     console.log(deter[0]);
 }
 async function giveDir(){
