@@ -115,7 +115,12 @@ li a:hover {
 .float-child {
   width: 40%;
   float: left;
-  padding: 20px;
+  padding: 30px;
 }
 
 /*monitor styles*/
+
+.information{
+  padding: 2px;
+  font-style: italic;
+}

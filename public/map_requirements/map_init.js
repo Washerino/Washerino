@@ -1,9 +1,11 @@
+import {populateSelectionDiv} from './monitor.js';
+
 let map;
 let pins=[];
 let currentPosition;
 async function initMap(){
     map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 7,
+        zoom: 6,
         center: {lat:-15.6891,lng:142.5316,}
     });
 
@@ -23,8 +25,6 @@ async function initMap(){
         pins[i].addListener("click",function(){
             map.setZoom(8);
             showDetails(pins[this].getTitle());
-            let selected = sessionStorage.setItem("selected_id", pins[this].getTitle());
-            console.log(selected);
             reverseGeocode(pins[this]);
         }.bind(i));
 
@@ -51,8 +51,16 @@ async function reverseGeocode(currentPin){
 async function showDetails(current_id){
     const temp = await fetch ("map/getStation/"+current_id.toString());
     const deter = await temp.json();
-    document.location.reload(true);
+    //document.location.reload(true);
     console.log(deter[0]);
+    let selected = sessionStorage.setItem("selected_id", current_id);
+    console.log("Selected station id : " + sessionStorage.getItem("selected_id"));
+    let selected_station = new CustomEvent('selected_station', {
+        detail: {
+            //selection: pins[this].getTitle()
+        }
+    });
+    populateSelectionDiv(selected_station)
 }
 async function giveDir(){
     let directionsService = new google.maps.DirectionsService();
