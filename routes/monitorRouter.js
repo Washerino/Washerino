@@ -54,7 +54,7 @@ router.get("/getCheckDate/:id", async(req, res) => {
 router.get("/getRanger/:id", async(req, res) => {
 
     try {
-        console.log("reached getstationranger");
+        //console.log("reached getstationranger");
         const { id } = req.params;
         const details = await pool.query("SELECT RangerID FROM station_check  WHERE id = $1", [id]);
         res.json(details.rows);
@@ -81,7 +81,36 @@ router.post("/addStationData", async(req, res) => {
         console.error(err.message);
         res.json("Error trying to add data");
     }
+});
 
+
+// retrieve stations name using id
+router.get("/getStationName/:id", async(req, res) => {
+    try {
+        console.log("reached get station name");
+        const { id } = req.params;
+        const details = await pool.query("SELECT INFORMATION FROM station  WHERE ID = $1", [id]);
+        res.json(details.rows);
+    } catch (err) {
+        console.error(err.message);
+        res.json("Error occured during station name retrieval");
+    }
+});
+
+//gets a given station details
+router.get("/getStation/:id", async(req, res) => {
+
+    try {
+
+        const { id } = req.params;
+        const stationDetails = await pool.query("SELECT * FROM station  WHERE ID = $1", [id]);
+
+        res.json(stationDetails.rows);
+        
+    } catch (err) {
+        console.error(err.message);
+        res.json("Couldnt retrieve station Details");
+    }
 });
 
 module.exports = router;

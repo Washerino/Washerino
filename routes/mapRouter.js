@@ -45,6 +45,22 @@ router.get("/getStation/:id", async(req, res) => {
     }
 });
 
+// gets a given station check info
+router.get("/getStationCheck/:id", async(req, res) => {
+
+    try {
+
+        const { id } = req.params;
+        const station_check_Details = await pool.query("SELECT * FROM station_check  WHERE stationid = $1", [id]);
+
+        res.json(station_check_Details.rows);
+        
+    } catch (err) {
+        console.error(err.message);
+        res.json("Couldnt retrieve station Details");
+    }
+});
+
 //gets all station details
 router.get("/getAllStations/", async(req, res) => {
 
