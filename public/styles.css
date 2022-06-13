@@ -105,6 +105,9 @@ li a:hover {
   width: 100%;
 }
 
+.issue_container * {
+  vertical-align: middle;
+}
 .float-container {
   padding: 20px;
   margin: auto;

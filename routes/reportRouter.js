@@ -10,7 +10,7 @@ router.use(express.json()); // => req.body
 
 router.get('/', (req, res) => {
     //placeholder
-    res.sendFile(path.join(__dirname,'..','public','logbook.html'));
+    res.sendFile(path.join(__dirname,'..','public','report.html'));
 });
 
 
@@ -18,10 +18,16 @@ router.get('/', (req, res) => {
 router.post("/createReport", async(req, res) => {
     try {
         const { rangerID } = req.body;
+        const { stationID } = req.body;
         const { issue } = req.body;
         const cleared = false;
+
+        console.log(rangerID);
+        console.log(stationID);
+        console.log(issue);
+
     
-        const newRanger = await pool.query("INSERT INTO report (RangerId, Issue, Cleared) VALUES ($1, $2, $3)", [rangerID, issue, cleared]);
+        const newRanger = await pool.query("INSERT INTO report (RangerId, stationID, Issue, Cleared) VALUES ($1, $2, $3, $4)", [rangerID, stationID, issue, cleared]);
     
         res.json("Report successfully created");
     } catch (err) {
