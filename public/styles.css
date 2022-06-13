@@ -106,7 +106,6 @@ li a:hover {
 }
 
 .float-container {
-  border: 3px solid #fff;
   padding: 20px;
   margin: auto;
   width: 100%;
@@ -116,11 +115,56 @@ li a:hover {
   width: 40%;
   float: left;
   padding: 30px;
+  background-color: aliceblue;
+  border-radius: 10px;
 }
 
 /*monitor styles*/
 
 .information{
-  padding: 2px;
+  padding: 4px;
   font-style: italic;
+}
+
+.station_name{
+  padding-bottom: 2px;
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.water_level {
+  height: 24px;
+  width: 50%;
+  background-color:honeydew;
+  border: 3px solid lightblue;
+  border-radius: 3px;
+  
+  }
+  .current{
+    height: 24px;
+    width: 1%;
+    background-color:dodgerblue;
+    font-style: italic;
+    border: 0px;
+    border-right: 5px solid lightblue;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+    box-sizing: border-box;
+}
+
+#report_form{
+  height: 24px;
+  width: 100%;
+}
+
+#report_message{
+  height: 100%;
+  width: 75%;
+  font-style: italic;
+}
+
+
+#submit_report{
+  height: 100%;
+  width: 72px;
 }
