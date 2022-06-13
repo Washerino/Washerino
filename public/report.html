@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <script src="/report.js" defer></script>
+    <title>WASHERINO!</title>
+  </head>
+  <ul>
+    <li><a href="/index">Home</a></li>
+    <li><a href="/map">Map</a></li>
+    <li><a href="/login">Ranger log-in</a></li>
+    <li><a href="/report">Make a Report</a></li>
+  </ul>
+  <body>
+    <h1>Washerino</h1>
+    <form action="" id="report-form">
+        <label for="station">Select a station:</label>
+        <select name="station" id="station_selector" required></select>
+        <br>
+        <br>
+        <div class="issue_container"> 
+            <label for="issue">Detail problem:</label>
+            <textarea id="issue" name="issue" rows="4" cols="50"></textarea>
+        </div>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>

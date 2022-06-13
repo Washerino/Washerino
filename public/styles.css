@@ -94,3 +94,7 @@ li a:hover {
   height: 600px;
   width: 100%;
 }
+
+.issue_container * {
+  vertical-align: middle;
+}

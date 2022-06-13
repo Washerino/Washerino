@@ -64,4 +64,24 @@ router.get("/getRanger/:id", async(req, res) => {
     }
 });
 
+
+router.post("/addStationData", async(req, res) => {
+
+    try {
+        const { waterLevel } = req.body;
+        const { waterQuality } = req.body;
+        const { stationID } = req.body;
+        const { rangerID } = req.body;
+        const { date } = req.body;
+
+        const details = await pool.query("INSERT INTO station_check (waterlevel, waterQuality, stationID, rangerID, checkdate) VALUES ($1, $2, $3, $4, $5)", [waterLevel, waterQuality, stationID, rangerID, date]);
+
+        res.json("station data successfully added");
+    } catch (err) {
+        console.error(err.message);
+        res.json("Error trying to add data");
+    }
+
+});
+
 module.exports = router;
