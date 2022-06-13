@@ -29,6 +29,27 @@ router.post("/createStation", async(req, res) => {
     }
 });
 
+//create a new report
+router.post("/createReport", async(req, res) => {
+    try {
+        const getNumReports = await fetch('/getAllReports');
+        let num = await getNumReports.json();
+        console.log(num);
+        const id =  num[0]+1//num// get length
+        const rangerid = req.body.rangerid;
+        const stationid = req.body.stationid;
+        const issue = req.body.issue;
+        const cleared = req.body.cleared;
+        const newReport = await pool.query("INSERT INTO report (id, rangerid, stationid, , issue, cleared) VALUES ($1, $2, $3, $4, $5)", [id, rangerid, stationid, , issue, cleared]);
+    
+        res.json("report successfully created");
+    } catch (err) {
+        console.error(err.message);
+        res.json("cannot find report table");
+    }
+});
+
+
 //gets a given station details
 router.get("/getStation/:id", async(req, res) => {
 
@@ -75,6 +96,36 @@ router.get("/getAllStations/", async(req, res) => {
         res.json("Couldnt retrieve stations Details");
     }
 });
+
+//gets all reports details
+router.get("/getAllReports/", async(req, res) => {
+
+    try {
+
+        const stationDetails = await pool.query("SELECT * FROM report");
+
+        res.json(stationDetails.rows);
+        
+    } catch (err) {
+        console.error(err.message);
+        res.json("Couldnt retrieve stations Details");
+    }
+});
+
+
+// count number of reports
+router.get('/getNumberOfReports', async(req, res) => {
+
+    try {
+        const count = await pool.query("SELECT COUNT(*) FROM report");
+    
+        res.status(200).json(count.rows[0]);
+        
+    } catch (err) {
+        console.error(err.message);
+        res.json("Couldnt find reports");
+    }
+  });
 
 //deletes a given station
 router.delete("/deleteStation/:id", async(req, res) => {
