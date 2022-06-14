@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="styles.css">
     <script src="/report.js" defer></script>
     <title>WASHERINO!</title>
+      <script
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDF2sKEOXp5BIk49LdGIFifFqZJd-ww-1I&libraries=geometry&callback=initMap&v=weekly"
+              defer
+      ></script>
   </head>
   <ul>
     <li><a href="/index">Home</a></li>
@@ -13,9 +17,12 @@
   </ul>
   <body>
     <h1>Washerino</h1>
+    <div class="routes">
+        <div id="map"></div>
+    </div>
+
     <form action="" id="report-form">
         <label for="station">Select a station:</label>
-        <select name="station" id="station_selector" required></select>
         <br>
         <br>
         <div class="issue_container"> 
@@ -25,5 +32,10 @@
         <br>
         <input type="submit" value="Submit">
     </form>
+
+
+
+
+
   </body>
 </html>
