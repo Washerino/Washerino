@@ -155,6 +155,10 @@ li a:hover {
     box-sizing: border-box;
 }
 
+.water_quality{
+  padding: 5px;
+}
+
 #report_form{
   height: 24px;
   width: 100%;

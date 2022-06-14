@@ -32,19 +32,15 @@ router.post("/createStation", async(req, res) => {
 //create a new report
 router.post("/createReport", async(req, res) => {
     try {
-        const getNumReports = await fetch('/getAllReports');
-        let num = await getNumReports.json();
-        console.log(num);
-        const id =  num[0]+1//num// get length
-        const rangerid = req.body.rangerid;
-        const stationid = req.body.stationid;
-        const issue = req.body.issue;
-        const cleared = req.body.cleared;
-        const newReport = await pool.query("INSERT INTO report (id, rangerid, stationid, , issue, cleared) VALUES ($1, $2, $3, $4, $5)", [id, rangerid, stationid, , issue, cleared]);
-    
+        const { rangerid } = req.body;
+        const { stationid } = req.body;
+        const { issue }= req.body;
+        const { cleared} = req.body;
+        const { newReport } = await pool.query("INSERT INTO report (rangerid, stationid, issue, cleared) VALUES ($1, $2, $3, $4)", [rangerid, stationid, issue, cleared]);
         res.json("report successfully created");
     } catch (err) {
-        console.error(err.message);
+        console.log(err);
+        console.lod(err.message);
         res.json("cannot find report table");
     }
 });
