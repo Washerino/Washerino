@@ -2,5 +2,30 @@
   "dependencies": {
     "express": "^4.18.1",
     "pg": "^8.7.3"
-  }
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "supertest": "^6.2.3"
+  },
+  "name": "washerino",
+  "description": "A washdown screen organiser",
+  "version": "1.0.0",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Washerino/Washerino.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Washerino/Washerino/issues"
+  },
+  "homepage": "https://github.com/Washerino/Washerino#readme"
 }

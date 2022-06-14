@@ -29,6 +29,7 @@ const reportRouter = require('./routes/reportRouter');
 const rangerRouter = require('./routes/rangerRouter');
 const logbookRouter = require('./routes/logbookRouter');
 const mapRouter = require('./routes/mapRouter.js');
+const { builtinModules } = require('module');
 
 app.use('/login', loginRouter);
 app.use('/monitor', monitorRouter);
@@ -39,6 +40,7 @@ app.use('/map', mapRouter);
 
 app.listen(port, () => {
     console.log(`Express app listening on port ${port}`);
-})
+});
 
-// terminate node cdm -> taskkill /F /IM node.exe
+
+module.exports = app;
