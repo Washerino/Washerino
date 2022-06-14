@@ -25,6 +25,9 @@ async function constructSelectionDiv(event)
     // hide water div by defualt
     let water_level_element = document.getElementsByClassName("water_level");
     water_level_element[0].style.display = "none";
+    // hide water div by defualt
+    let station_name_element = document.getElementsByClassName("station_name");
+   station_name_element[0].innerText = "Please select a washdown station";
 }
 
 async function populateSelectionDiv(event)
