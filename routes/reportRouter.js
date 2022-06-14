@@ -32,7 +32,10 @@ router.post("/createReport", async(req, res) => {
         res.json("Report successfully created");
     } catch (err) {
         console.error(err.message);
-        res.json("could not create report");
+        res.json("Could not create report");
+        if(!req.body.stationID){
+            res.json("Please select a pin");
+        }
     }
 });
 

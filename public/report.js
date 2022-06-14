@@ -8,7 +8,7 @@ async function initMap(){
         zoom: 6,
         center: {lat:-15.6891,lng:142.5316,}
     });
-
+    sessionStorage.setItem("selected_id",);
     const test = await fetch("/map/getAllStations/");
     let pin_json = await test.json();
     console.log(pin_json);
@@ -92,7 +92,8 @@ async function createReport(event) {
     const json = await response.json();
 
     console.log(json);
-
+    let x = document.getElementById("check");
+    x.innerText = json;
     reportForm.reset();
 
 };
