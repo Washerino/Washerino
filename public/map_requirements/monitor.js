@@ -1,5 +1,6 @@
 const fields = ["station_name", "address", "information", "data_entry", "water_level", "water_quality", "report_form", "reports","contact_info"];
 const map_fields = ["station_name", "address", "information", "report_form","contact_info"];
+const data_types = ["water level", "water qualtiy"];
 let isMonitor = false;
 async function constructSelectionDiv(event)
 {
@@ -67,6 +68,8 @@ async function populateSelectionDiv(event)
 
         let current_level_element = document.getElementsByClassName("water_level current");
         console.log(current_level_element);
+
+        
     
         if (current_level_element.length == 0)
         {
@@ -88,8 +91,63 @@ async function populateSelectionDiv(event)
         let water_quality_element = document.getElementsByClassName("water_quality");
         let station_check_waterQuality = station_check[0].waterquality;
         water_quality_element[0].innerText = "Quality : " + station_check_waterQuality;
-    }
 
+        // make data entry form
+        let data_entry = document.getElementsByClassName("data_entry");
+        let new_data_form = document.createElement("form");
+        let new_data_input = document.createElement("input");
+        let new_data_submit = document.createElement("button");
+        let new_data_notif = document.createElement("p");
+        let new_data_type = document.createElement("select");
+    
+        new_data_form.className = "data_form";
+        new_data_form.id = "dataForm";
+    
+        new_data_input.id = "datum";
+        new_data_input.className = "data_entry_body";
+        new_data_input.placeholder = "Type here...";
+        new_data_input.name = "data_entry_body";
+
+        new_data_type.className = "selector";
+        new_data_type.id = "data_type_selector";
+        new_data_type.name = "data_type_selector";
+    
+        const data_type_selector = new_data_type;//document.querySelector('#data_type_selector');
+        for(let i =0;i<data_types.length;i++)
+        {
+            addOptions(data_types[i], data_type_selector); // add new select option for each type
+        }
+    
+        new_data_submit.id = "submit_data";
+        new_data_submit.type = "submit";
+        new_data_submit.innerText = "update";
+
+        new_data_notif.className = "data_notif";
+        new_data_notif.innerHTML = null;
+
+        new_data_form.appendChild(new_data_input);
+        new_data_form.appendChild(new_data_type);
+        new_data_form.appendChild(new_data_submit);
+
+        if(document.getElementsByClassName("data_form").length == 0)
+        {
+            data_entry[0].appendChild(new_data_form);
+        }
+        if(document.getElementsByClassName("data_notif").length == 0)
+        {
+            data_entry[0].appendChild(new_data_notif);
+        }
+        else
+        {
+            let notif = document.getElementsByClassName("notif");
+            notif[0].innerHTML = null;
+        }
+
+        let selected_datatype = data_type_selector.value;
+        const dataForm = document.querySelector('#dataForm');
+        dataForm.addEventListener('submit', submitData);
+    }
+    
     let report_form = document.getElementsByClassName("report_form");
     let new_form = document.createElement("form");
     let new_input = document.createElement("input");
@@ -131,13 +189,49 @@ async function populateSelectionDiv(event)
     reportForm.addEventListener('submit', submitReport);
 }
 
+async function submitData(event){
+    event.preventDefault();
+    
+    //selects the form element from form
+    const formData = document.querySelector('#dataForm');
+
+    let data_entry_body = document.getElementsByClassName("data_entry_body");
+
+    var current = getCurrentDate();
+     //create a new object that stores details
+     const dataEntryDetails = {
+        stationid : sessionStorage.getItem("selected_id"),
+        datum : formData.elements.namedItem('data_entry_body').value,//data_entry_body[0].value,
+        type : formData.elements.namedItem('data_type_selector').value,
+        date : current
+    };
+    
+     // convert object into JSON string
+    const serializedMessage = JSON.stringify(dataEntryDetails);
+    console.log(dataEntryDetails);
+
+    // posts JSON string to the server at the end point /login
+    const response = await fetch('map/updateStationCheck', { method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                        body: serializedMessage
+                    }
+                )
+
+    const json = await response.json();
+    console.log(json);
+
+
+}
+
 async function submitReport(event) {
     event.preventDefault();
 
-    //selects the form element from form.hmtl
+    //selects the form element from form
     const formData = document.querySelector('#reportForm');
 
-    //create a new object that stores email and password
+    //create a new object that stores details
     const reportDetails = {
         //id : null,
         rangerid : sessionStorage.getItem('id'),
@@ -172,6 +266,24 @@ async function submitReport(event) {
         
         console.log("report submitted!");
     }
+}
+
+// for adding options to selector drop down
+function addOptions(item, selector)
+{
+    const option = document.createElement("option");
+    option.value = item.replace(/\s/g, '');
+    option.text = item;
+    selector.add(option);
+}
+
+// get current date
+function getCurrentDate()
+{
+    var currentdate = new Date(); 
+    var datetime = currentdate.getFullYear() + "-" + (currentdate.getMonth()+1)  + "-" + currentdate.getFullYear() + " "  
+                + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+    return datetime.toString();
 }
 
 const _populateSelectionDiv = populateSelectionDiv;

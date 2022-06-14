@@ -93,6 +93,33 @@ router.get("/getAllStations/", async(req, res) => {
     }
 });
 
+// update station check
+router.post("/updateStationCheck/", async(req, res) => {
+
+    try {
+
+        const { type } = req.body;
+        const { stationid } = req.body;
+        const { datum } = req.body;
+        const { date } = req.body;
+        
+        if(type == "waterlevel")
+        {
+            const { newData } = await pool.query( "UPDATE station_check SET waterlevel = ($1), checkdate = ($2) WHERE stationid = ($3)", [datum, date, stationid]);
+            res.json(newData.rows);
+        }
+        else if(type == "waterquality")
+        {
+            const { newData } = await pool.query( "UPDATE station_check SET waterquality = ($1), checkdate = ($2) WHERE stationid = ($3)", [datum, date, stationid]);
+            res.json(newData.rows);
+        }
+        
+    } catch (err) {
+        console.error(err.message);
+        res.json("Couldnt set station_check details");
+    }
+});
+
 //gets all reports details
 router.get("/getAllReports/", async(req, res) => {
 

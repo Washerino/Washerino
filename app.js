@@ -40,3 +40,5 @@ app.use('/map', mapRouter);
 app.listen(port, () => {
     console.log(`Express app listening on port ${port}`);
 })
+
+// terminate node cdm -> taskkill /F /IM node.exe
