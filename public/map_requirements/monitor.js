@@ -139,7 +139,7 @@ async function populateSelectionDiv(event)
         }
         else
         {
-            let notif = document.getElementsByClassName("notif");
+            let notif = document.getElementsByClassName("data_notif");
             notif[0].innerHTML = null;
         }
 
@@ -220,9 +220,18 @@ async function submitData(event){
                 )
 
     const json = await response.json();
-    console.log(json);
+    //console.log(json);
 
+    if (response.status === 200) {
 
+        let notif = document.getElementsByClassName("data_notif");
+        let update_notif = notif[0].innerText = "data submitted successfully!";
+
+        let input = document.getElementsByClassName("data_entry_body");
+        let update_input = input[0].value = null;
+        
+        console.log("data submitted!");
+    }
 }
 
 async function submitReport(event) {
