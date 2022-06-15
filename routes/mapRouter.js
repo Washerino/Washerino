@@ -11,9 +11,6 @@ router.use(express.json()); // => req.body
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname,'..','public','map_requirements','map.html'));
 });
-router.get('/map_user', (req, res) => {
-    res.sendFile(path.join(__dirname,'..','public','map_requirements','map_user.html'));
-});
 
 //create a new station
 router.post("/createStation", async(req, res) => {

@@ -29,6 +29,7 @@ const reportRouter = require('./routes/reportRouter');
 const rangerRouter = require('./routes/rangerRouter');
 const logbookRouter = require('./routes/logbookRouter');
 const mapRouter = require('./routes/mapRouter.js');
+const map_userRouter = require('./routes/map_userRouter.js');
 const { builtinModules } = require('module');
 
 app.use('/login', loginRouter);
@@ -37,6 +38,7 @@ app.use('/logbook', logbookRouter);
 app.use('/report', reportRouter);
 app.use('/ranger', rangerRouter);
 app.use('/map', mapRouter);
+app.use('/map_user', map_userRouter);
 
 app.listen(port, () => {
     console.log(`Express app listening on port ${port}`);
