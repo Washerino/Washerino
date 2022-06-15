@@ -34,6 +34,20 @@ select {
 	background-color: aliceblue;
 	border-radius: 5px;
 }
+#closest{
+  width:100%;
+  font-size: 18px;
+  padding: 15px 32px;
+  background-color: #C1E1C1;
+  font-family: Helvetica;
+  text-align: center;
+  border-radius: 8px;
+
+
+}
+#closest:hover{
+  cursor: pointer;
+}
 
 #log_out {
   float: right;
@@ -123,6 +137,7 @@ li a:hover {
   border: 3px solid black;
   padding: 10px;
   margin-top: 10px;
+  border-radius: 12px;
 }
 #map {
   height: 600px;
