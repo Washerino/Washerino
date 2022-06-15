@@ -9,10 +9,14 @@
   padding: 0;
   overflow: hidden;
   background-color: rgb(96, 94, 94);
+  font-size:20px;
 }
 
 li {
   float: left;
+}
+#log_out {
+  float: right;
 }
 
 

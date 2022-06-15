@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-  <head>
+<head>
     <link rel="stylesheet" href="../styles.css">
     <title>WASHERINO!</title>
     <script type="module" src="/map_requirements/map_init.js" defer></script>
@@ -10,27 +10,26 @@
             defer
     ></script>
 
-  </head>
-  <ul>
-    <li id="log_out"><a href="/">Log out</a></li>
-    <li><a href="/map">Map</a></li>
-    <li><a href="/monitor">Monitor</a></li>
-    <li><a href="/logbook">Logbook</a></li>
-  </ul>
-  <body>
-    <h1 class = "subtitle" name = "map_page">Map</h1>
-    <h3 class = "subtitle">Washdown station map</h3>
-    <div class = "float-container">
-      <div class = "float-child">
+</head>
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/map/map_user">Map</a></li>
+    <li><a href="/login">Ranger log-in</a></li>
+</ul>
+<body>
+<h1 class = "subtitle" name = "map_page">Map</h1>
+<h3 class = "subtitle">Washdown station map for standard users</h3>
+<div class = "float-container">
+    <div class = "float-child">
         <div class="routes">
-          <div id="map"></div>
-          <button id ="closest">Click for directions</button>
+            <div id="map"></div>
+            <button id ="closest">Click for directions</button>
         </div>
-      </div>
-      <div class = "float-child">
+    </div>
+    <div class = "float-child">
         <div id = selection_div>
         </div>
-      </div>
     </div>
-  </body>
+</div>
+</body>
 </html>
