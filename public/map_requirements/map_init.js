@@ -3,6 +3,8 @@ import {populateSelectionDiv} from './monitor.js';
 let map;
 let pins=[];
 let currentPosition;
+let geocoder;
+let infowindow;
 async function initMap(){
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: 6,
@@ -12,6 +14,8 @@ async function initMap(){
     const test = await fetch("/map/getAllStations/");
     let pin_json = await test.json();
     console.log(pin_json);
+    infowindow = new google.maps.InfoWindow();
+    geocoder = new google.maps.Geocoder();
     let i;
     for(i=0;i<pin_json.length;i++){
         pins.push(new google.maps.Marker({
@@ -31,8 +35,9 @@ async function initMap(){
     }
 }
 async function reverseGeocode(currentPin){
-    const geocoder = new google.maps.Geocoder();
-    const infowindow = new google.maps.InfoWindow();
+
+    infowindow.close();
+
     //referenced from google maps reverse geocoding documentation
     geocoder
         .geocode({location:currentPin.getPosition()})
