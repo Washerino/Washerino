@@ -26,6 +26,7 @@ async function loginAttempt(event) {
     const json = await response.json();
 
 
+    //if login was successful add ranger id, rangername and username to the seessionStorage
     if (response.status === 200) {
         
         try

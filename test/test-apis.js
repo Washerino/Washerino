@@ -62,6 +62,45 @@ describe('POST /login', () => {
     });
 });
 
+describe('POST /addStationData', () => {
+
+    it('Inserted station data into database', (done) => {
+        
+        request
+        .post('/monitor/addStationData')
+        .send({ waterLevel: "68", waterQuality: "Good", stationID: 100, rangerID:1, date: "2021-09-21"})
+        .expect(200)
+        .expect('"station data successfully added"')
+        .end(done);
+    });
+});
+
+describe('POST /createStation', () => {
+
+    it('Inserted station into database', (done) => {
+        
+        request
+        .post('/map/createStation')
+        .send({ longitude: "-19.966280", latitude: "138.418700", information: "Norwich", operating:true})
+        .expect(200)
+        .expect('"station successfully created"')
+        .end(done);
+    });
+});
+
+describe('Delete /deleteStation/:id', () => {
+
+    it('Delete station from database', (done) => {
+        
+        request
+        .delete('/map/deleteStation/102')
+        .expect(200)
+        .expect('"Station successfully deleted"')
+        .end(done);
+    });
+});
+
+
 
 //map tests :)
 
