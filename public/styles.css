@@ -15,6 +15,26 @@
 li {
   float: left;
 }
+
+input {
+  padding: 8px;
+	background-color: aliceblue;
+	border-radius: 5px;
+  margin: auto;
+  width: 100%;
+}
+
+select {
+  padding: 8px;
+	background-color: aliceblue;
+	border-radius: 5px;
+}
+#submit_data, #submit_report {
+  padding: 8px;
+	background-color: aliceblue;
+	border-radius: 5px;
+}
+
 #log_out {
   float: right;
 }
