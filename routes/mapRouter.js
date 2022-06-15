@@ -106,11 +106,13 @@ router.post("/updateStationCheck/", async(req, res) => {
         if(type == "waterlevel")
         {
             const { newData } = await pool.query( "UPDATE station_check SET waterlevel = $1, checkdate = $2 WHERE stationid = $3", [datum, date, stationid]);
+            //console.log(res);
             res.json(newData.rows);
         }
-        else if(type == "waterquality")
+        else
         {
             const { newData } = await pool.query( "UPDATE station_check SET waterquality = $1, checkdate = $2 WHERE stationid = $3", [datum, date, stationid]);
+            //console.log(res);
             res.json(newData.rows);
         }
         

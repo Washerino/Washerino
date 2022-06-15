@@ -281,7 +281,7 @@ function addOptions(item, selector)
 function getCurrentDate()
 {
     var currentdate = new Date(); 
-    var datetime = currentdate.getFullYear() + "-" + (currentdate.getMonth()+1)  + "-" + currentdate.getFullYear() + " "  
+    var datetime = currentdate.getFullYear() + "-" + (currentdate.getMonth()+1)  + "-" + currentdate.getDay() + " "  
                 + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
     return datetime.toString();
 }
