@@ -8,7 +8,7 @@ const request = require('supertest')(app);
 describe('POST ranger/createRanger', () => {
 
     it('Adds a ranger to the database', (done) => {
-        
+
         request
         .post('/ranger/createRanger')
         .send({ rangerName: "harryRed", username: "harry10", password: "1234"})
@@ -61,3 +61,27 @@ describe('POST /login', () => {
         .end(done);
     });
 });
+
+
+//map tests :)
+
+describe('GET map/getAllStations/',()=>{
+    it("All stations retrieved from database for map",(done)=> {
+
+        request
+            .get('/map/getAllStations')
+            .expect(200)
+            .end(done)
+    });
+});
+
+// describe('GET map/getStation/:id',()=>{
+//     it("Got station from station id",(done)=> {
+//
+//        request
+//             .get('/map/getStation/3')
+//             .expect(200)
+//             .end(done)
+//     });
+// });
+
