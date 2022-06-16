@@ -114,13 +114,13 @@ describe('GET map/getAllStations/',()=>{
     });
 });
 
-// describe('GET map/getStation/:id',()=>{
-//     it("Got station from station id",(done)=> {
-//
-//        request
-//             .get('/map/getStation/3')
-//             .expect(200)
-//             .end(done)
-//     });
-// });
+describe('GET map/getStation/:id',()=>{
+    it("Got station from station id",(done)=> {
+
+       request
+            .get('/map/getStation/100')
+            .expect(200)
+            .end(done)
+    });
+});
 
