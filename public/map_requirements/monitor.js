@@ -99,7 +99,8 @@ async function populateSelectionDiv(event)
         let new_data_submit = document.createElement("button");
         let new_data_notif = document.createElement("p");
         let new_data_type = document.createElement("select");
-    
+        
+        // configure data entry form elements
         new_data_form.className = "data_form";
         new_data_form.id = "dataForm";
     
@@ -112,6 +113,7 @@ async function populateSelectionDiv(event)
         new_data_type.id = "data_type_selector";
         new_data_type.name = "data_type_selector";
     
+        // add data types to drop down
         const data_type_selector = new_data_type;//document.querySelector('#data_type_selector');
         for(let i =0;i<data_types.length;i++)
         {
@@ -129,6 +131,7 @@ async function populateSelectionDiv(event)
         new_data_form.appendChild(new_data_type);
         new_data_form.appendChild(new_data_submit);
 
+        // if data form/notif elements not generated, make them
         if(document.getElementsByClassName("data_form").length == 0)
         {
             data_entry[0].appendChild(new_data_form);
@@ -143,10 +146,13 @@ async function populateSelectionDiv(event)
             notif[0].innerHTML = null;
         }
 
+        // attach data entry database submit function
         let selected_datatype = data_type_selector.value;
         const dataForm = document.querySelector('#dataForm');
         dataForm.addEventListener('submit', submitData);
     }
+
+    // make report form 
     
     let report_form = document.getElementsByClassName("report_form");
     let new_form = document.createElement("form");
@@ -154,6 +160,7 @@ async function populateSelectionDiv(event)
     let new_submit = document.createElement("button");
     let new_notif = document.createElement("p");
     
+    // configure report form elements
     new_form.className = "new_form";
     new_form.id = "reportForm";
     
@@ -172,6 +179,7 @@ async function populateSelectionDiv(event)
     new_form.appendChild(new_input);
     new_form.appendChild(new_submit);
 
+    // if data form/notif elements not generated, make them
     if(document.getElementsByClassName("new_form").length == 0)
     {
         report_form[0].appendChild(new_form);
@@ -189,6 +197,7 @@ async function populateSelectionDiv(event)
     reportForm.addEventListener('submit', submitReport);
 }
 
+// submit the station data update to db via router
 async function submitData(event){
     event.preventDefault();
     
@@ -234,6 +243,7 @@ async function submitData(event){
     }
 }
 
+// submit report to db via route
 async function submitReport(event) {
     event.preventDefault();
 
@@ -295,8 +305,8 @@ function getCurrentDate()
     return datetime.toString();
 }
 
+// export populate function for use in map init js
 const _populateSelectionDiv = populateSelectionDiv;
 export {_populateSelectionDiv as populateSelectionDiv};
 
 window.addEventListener('load', constructSelectionDiv);
-//window.addEventListener('load', populateSelectionDiv);

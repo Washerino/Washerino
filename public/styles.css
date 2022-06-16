@@ -190,7 +190,7 @@ li a:hover {
 
 #report_message{
   height: 100%;
-  width: 75%;
+  width: 100%;
   font-style: italic;
 }
 
@@ -198,4 +198,8 @@ li a:hover {
 #submit_report{
   height: 100%;
   width: 72px;
+}
+
+#submit_report, #submit_data,#data_type_selector{
+  background-color:rgba(140, 191, 39, 0.395);
 }
