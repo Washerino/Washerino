@@ -2,7 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="styles.css">
-    <script src="/logbook.js" defer></script>
+    <script src="/logbook.js" ></script>
     <title>WASHERINO!</title>
   </head>
   <ul>
@@ -13,23 +13,26 @@
   </ul>
   <body>
     <h1>Logbook</h1>
-
-  <body onload="dates();">
-  <div id= "schedules">
-    <h3>Schedule</h3>
-    <p> View reports made from rangers</p>
-  </div>
-
-
-  <div id = "reports">
-    <h3>Reports</h3>
-    <p> View general reports made about washdown stations.</p>
-    <label for="station">Select a station:</label>
-        <select name="station" id="station_selector" required></select>
+    <div id = "schedules">
+      <h3>Schedule</h3>
+      <p> View all reports made from rangers</p>
+      <div id = "schedule"></div>
+      <br>
+      <ul id = "rangerreports">
         <br>
-        <br>
-  </div>
+      </ul>
+      <ul id = "repors"></ul>
+    </div>
 
+
+    <div id = "reports">
+      <h3>Reports</h3>
+      <p> View general reports made about washdown stations.</p>
+      <label for= "station">Select a station:</label>
+          <select name="station" id="station_selector" required></select>
+      <option id = stationids></option>
+      <li id = reportsforstation></li>
+    </div>
 
 </body>
 </html>
