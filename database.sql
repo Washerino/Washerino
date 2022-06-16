@@ -36,7 +36,7 @@ CREATE TABLE station_check (
     FOREIGN KEY (StationID) REFERENCES station(ID)
     ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (RangerID) REFERENCES ranger(ID),
-    CheckDate TIMESTAMP
+    CheckDate DATE
 );
 
 CREATE TABLE report (

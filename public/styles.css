@@ -219,7 +219,6 @@ li a:hover {
   background-color:rgba(140, 191, 39, 0.395);
 }
 
-/Logbook styles/
 #schedules{
   width: 500px;
   height: 700px;
@@ -250,8 +249,17 @@ li a:hover {
   background-color: white;
 }
 
+#userreports{
+  background-color: white;
+}
+
 #repors{
   display: inline;
+}
+
+#reporrs{
+  display: inline;
+  float:none;
 }
 #lists{
   margin-bottom: 20px;

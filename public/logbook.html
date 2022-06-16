@@ -2,17 +2,40 @@
 <html>
   <head>
     <link rel="stylesheet" href="styles.css">
+    <script src="/logbook.js" ></script>
     <title>WASHERINO!</title>
   </head>
   <ul>
-    <li id="log_out"><a href="/">Log out</a></li>
+    <li><a href="/index">Home</a></li>
     <li><a href="/map">Map</a></li>
     <li><a href="/monitor">Monitor</a></li>
     <li><a href="/logbook">Logbook</a></li>
   </ul>
   <body>
     <h1>Logbook</h1>
-    <h3>Schedule / Reports</h3>
-    <p> Information goes here*</p>
-  </body>
+    <div id = "schedules">
+      <h3>Schedule</h3>
+      <p> View all reports made from rangers</p>
+      <div id = "schedule"></div>
+      <br>
+      <ul id = "rangerreports">
+        <br>
+      </ul>
+      <ul id = "repors"></ul>
+    </div>
+
+
+    <div id = "reports">
+      <h3>Reports</h3>
+      <p> View general reports made about washdown stations.</p>
+      <label for= "station">Select a station:</label>
+          <select name="station" id="station_selector" required></select>
+      <option id = stationids></option>
+      <ul id = "userreports">
+        <br>
+      </ul>
+      <ul id = "reporrs"></ul>
+    </div>
+
+</body>
 </html>

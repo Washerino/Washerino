@@ -19,7 +19,8 @@ router.post('/', async(req, res) => {
       const { username } = req.body;
       const { password } = req.body;
       const isCorrect = await pool.query("SELECT COUNT(*) FROM ranger WHERE USERNAME = $1 AND ADMINPASSWORD = $2", [username, password ]);
-      //if valid, do thing?
+
+      //if the count of the matches is 1 then login details are correct and return the username, name and id
 
       if (parseInt(isCorrect.rows[0].count) === 1) {
         const details = await pool.query("SELECT ID, RangerName, Username FROM ranger WHERE USERNAME = $1 AND ADMINPASSWORD = $2", [username, password ]);
